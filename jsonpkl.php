@@ -21,12 +21,7 @@ echo "method===".$method;
 echo "|||";
 //$input = json_decode(file_get_contents('php://input'),true);
  $input = file_get_contents('php://input');
- 
-
-
-// membuat koneksi
- 
-$link = mysqli_connect('localhost', 'id12789078_kahf13', 'Kahf13','id12789078_mahasiswa');
+$link = mysqli_connect('localhost', 'id12789078_kahf13', 'Kahf13', 'id12789078_mahasiswa');
 mysqli_set_charset($link,'utf8');
  
 $data = preg_replace('/[^a-z0-9_]+/i','',array_shift($request));
@@ -37,36 +32,36 @@ echo "isinya data===".$id;
 echo "|||";
 
 
-if (strcmp($data, $data) ==0) {
+if (strcmp($data, 'data') ==0) {
  switch ($method) {
  case 'GET':
      {
     if (empty($id))
     {
-    $sql = "SELECT * FROM `pkl`"; 
-    echo "SELECT * FROM `pkl` ";break;
+    $sql = "select * from pkl"; 
+    echo "select * from pkl ";break;
     }
     else
     {
-         $sql = "SELECT * FROM `pkl` where nama='$id'";
-         echo "SELECT * FROM `pkl` where nama='$id'";break;
+         $sql = "select * from pkl where nama='$id'";
+         echo "select * from pkl where nama='$id'";break;
         
         
     }
     
     
+    
+    
      }
-     
-     
  }
  
  
  
- $result = mysqli_query($link, $sql);
+ $result = mysqli_query($link,$sql);
  
  if (!$result) {
  http_response_code(404);
- die(mysqli_error($link));
+ die(mysqli_error());
  }
  
  
@@ -97,39 +92,39 @@ if ($method == 'POST') {
         ////
         
         $json = json_decode($input, true);
-        echo "json =".$json["nama"] ;
-        echo "Proses".$json->nama;
+        echo "json =".$json["nama"];
+        echo "Proses".$json["nama"];
         $namapan=$json["nama"];
         $pengasuhpan=$json["pengasuh"];
         $alamatpan=$json["alamat"];
         $kontakpan=$json["kontak"];
 
-		$querycek = "SELECT nama,pengasuh,alamat,kontak FROM 'pkl' WHERE nama ='$namapan'";
+		$querycek = "SELECT nama,pengasuh,alamat, kontak, FROM pkl WHERE nama ='$namapan'";
 		echo "query select ".$querycek;
-		$result=mysqli_query($link,querycek);
+		$result=mysqli_query($link,$querycek);
 		echo "result =".$result;
 		
 		if ( $rowcount == 0)
 		{
-		$query = "INSERT INTO 'pkl' (
+		$query = "INSERT INTO pkl (
 		nama,
 		pengasuh,
-		alamat,
-        kontak)
+		alamat, 
+		kontak)
 		VALUES (				
 		'$namapan',
 		'$pengasuhpan',
 		'$alamatpan',
-        '$kontakpan')";
+		'$kontakpan')";
 		echo "query ".$query;
 		mysqli_query($link,$query);
 		}
 		else if ($rowcount > 0)
 		{
-		$query = "UPDATE pkl SET
+		$query = "UPDATE projek SET
 		pengasuh = '$pengasuhpan',
 		alamat = '$alamatpan',
-        kontak = '$kontakpan'
+		kontak ='$kontakpan'
 		WHERE nama ='$namapan'";
 		echo "query ".$query;
 		mysqli_query($link,$query);
