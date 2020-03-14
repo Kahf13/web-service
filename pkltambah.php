@@ -6,8 +6,10 @@
 <?php
 if (isset ($_POST['nama'])) {
 $url = 'https://kahf13.000webhostapp.com/pkl2.php';
-//$data = "[{\"nama\":\".$_POST['nama'].\",\"pengasuh\":\".$_POST['pengasuh'].\",\"alamat\":\".$_POST['alamat'].\",\"kontak\":\".$_POST['kontak'].\"}]";//
-$data="{\"nama\":\"".$_POST['nama']."\",\"pengasuh\":\"".$_POST['pengasuh']."\",\"alamat\":\"".$_POST['alamat']."\",\"kontak\":\"".$_POST['kontak']."\"}";
+//$data="{\"nama\":\"".$_POST['nama']."\",\"pengasuh\":\"".$_POST['pengasuh']."\",\"alamat\":\"".$_POST['alamat']."\,
+   //\"kontak\":\"".$_POST['kontak']."\"}";
+$data="{\"nama\":\"".$_POST['nama']."\",\"pengasuh\":\"".$_POST['pengasuh']."\",\"alamat\":\"".$_POST['alamat']."\,
+   \"kontak\":\"".$_POST['kontak']."\"}";
 echo "datanya ".$data;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
@@ -26,7 +28,7 @@ curl_close($ch);
 <td><input type="text" name="nama" id="nama"></td>
 </tr>
 <tr>
-<td>Nama Pengasuh</td>
+<td>Pengasuh</td>
 <td><input type="text" name="pengasuh" id="pengasuh"></td>
 </tr>
 <tr>
