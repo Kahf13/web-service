@@ -93,15 +93,15 @@ if ($method == 'POST') {
         
         $json = json_decode($input, true);
         echo "json =".$json["nama"];
-        echo "Proses".$json["nama"];
+        echo "Proses".$json->nama;
         $namapan=$json["nama"];
         $pengasuhpan=$json["pengasuh"];
         $alamatpan=$json["alamat"];
         $kontakpan=$json["kontak"];
 
-		$querycek = "SELECT nama,pengasuh,alamat, kontak, FROM panti WHERE nama ='$namapan'";
+		$querycek = "SELECT nama,pengasuh,alamat,kontak, FROM panti WHERE nama ='$namapan'";
 		echo "query select ".$querycek;
-		$result=mysqli_query($link,$querycek);
+		$result=mysqli_query($link, $querycek);
 		echo "result =".$result;
 		
 		if ( $rowcount == 0)
